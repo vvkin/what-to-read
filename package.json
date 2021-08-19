@@ -1,0 +1,9 @@
+{
+  "name": "what-to-read",
+  "version": "1.0.0",
+  "description": "Simple application where users can read books and share minds about that via comments",
+  "repository": "git@github.com:vvkin/what-to-read.git",
+  "author": "Vadym Kinchur <vkincur@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {}
+}
