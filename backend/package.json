@@ -5,13 +5,19 @@
   "main": "src/app.js",
   "private": true,
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "start": "node dist/app.js"
+    "build": "tsc -p ./tsconfig.json",
+    "start": "yarn build && node dist/app.js",
+    "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' src/app.ts"
   },
   "dependencies": {
-    "fastify": "^3.20.2"
+    "dotenv": "^10.0.0",
+    "fastify": "^3.20.2",
+    "fastify-autoload": "^3.8.0",
+    "fastify-plugin": "^3.0.0"
   },
   "devDependencies": {
-    "@types/node": "^16.6.2"
+    "@types/node": "^16.6.2",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1"
   }
 }
