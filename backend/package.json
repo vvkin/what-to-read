@@ -2,22 +2,25 @@
   "name": "backend",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "src/app.js",
+  "main": "src/server.ts",
   "private": true,
   "scripts": {
     "build": "tsc -p ./tsconfig.json",
-    "start": "yarn build && node dist/app.js",
-    "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' src/app.ts"
+    "build:clear": "rm -rf dist/ && yarn build",
+    "start": "yarn build:clear && node dist/backend/src/server.js",
+    "dev": "nodemon -r tsconfig-paths/register --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' src/server.ts"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
     "fastify": "^3.20.2",
     "fastify-autoload": "^3.8.0",
+    "fastify-mongodb": "^4.1.0",
     "fastify-plugin": "^3.0.0"
   },
   "devDependencies": {
     "@types/node": "^16.6.2",
     "nodemon": "^2.0.12",
-    "ts-node": "^10.2.1"
+    "ts-node": "^10.2.1",
+    "tsconfig-paths": "^3.10.1"
   }
 }

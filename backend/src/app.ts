@@ -1,17 +1,36 @@
 import { join } from 'path';
-import Fastify from 'fastify';
-import AutoLoad from 'fastify-autoload';
-import { configFactory, APP_CONFIG } from './config';
+import { FastifyPluginAsync } from 'fastify';
+import AutoLoad, { AutoloadPluginOptions } from 'fastify-autoload';
+import { fastifyMongodb } from 'fastify-mongodb';
+import { config, DATABASE_CONFIG } from '@config/config';
+import { Database } from '@interfaces/database.interface';
 
-const { port, host, logger } = configFactory()[APP_CONFIG];
+export type AppOptions = {
+  // additional options
+} & Partial<AutoloadPluginOptions>;
 
-const fastify = Fastify({ logger });
-fastify.register(AutoLoad, { dir: join(__dirname, 'plugins') });
-fastify.register(AutoLoad, { dir: join(__dirname, 'routes') });
+const { connectionUrl } = config[DATABASE_CONFIG];
 
-fastify.listen(port, host, (err) => {
-  if (err) {
-    fastify.log.error(err);
-    process.exit(1);
+const app: FastifyPluginAsync<AutoloadPluginOptions> = async (
+  fastify,
+  opts
+): Promise<void> => {
+  void fastify.register(fastifyMongodb, {
+    forceClose: true,
+    url: connectionUrl,
+    name: 'db',
+  });
+  void fastify.register(AutoLoad, {
+    dir: join(__dirname, 'plugins'),
+    options: opts,
+  });
+};
+
+export default app;
+export { app };
+
+declare module 'fastify' {
+  export interface FastifyInstance {
+    db: Database;
   }
-});
+}
