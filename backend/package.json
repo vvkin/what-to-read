@@ -5,9 +5,9 @@
   "main": "src/server.ts",
   "private": true,
   "scripts": {
+    "pre-build": "rm -rf dist/",
     "build": "tsc -p ./tsconfig.json",
-    "build:clear": "rm -rf dist/ && yarn build",
-    "start": "yarn build:clear && node dist/backend/src/server.js",
+    "start": "yarn pre-build && yarn build && node -r ./paths.js dist/backend/src/server.js",
     "dev": "nodemon -r tsconfig-paths/register --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' src/server.ts"
   },
   "dependencies": {
@@ -15,12 +15,12 @@
     "fastify": "^3.20.2",
     "fastify-autoload": "^3.8.0",
     "fastify-mongodb": "^4.1.0",
-    "fastify-plugin": "^3.0.0"
+    "fastify-plugin": "^3.0.0",
+    "tsconfig-paths": "^3.10.1"
   },
   "devDependencies": {
     "@types/node": "^16.6.2",
     "nodemon": "^2.0.12",
-    "ts-node": "^10.2.1",
-    "tsconfig-paths": "^3.10.1"
+    "ts-node": "^10.2.1"
   }
 }

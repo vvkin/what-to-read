@@ -13,5 +13,6 @@ export const config = {
   } as IServerConfig,
   [DATABASE_CONFIG]: {
     connectionUrl: process.env.DATABASE_URL,
+    dbName: process.env.DATABASE_NAME,
   } as IDatabaseConfig,
 };

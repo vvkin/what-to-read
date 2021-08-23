@@ -6,7 +6,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
-  "ignorePatterns": ["dist"],
+  "ignorePatterns": ["dist", "node_modules"],
   "rules": {
     "prettier/prettier": "error"
   }

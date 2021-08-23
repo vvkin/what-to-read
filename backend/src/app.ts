@@ -9,7 +9,7 @@ export type AppOptions = {
   // additional options
 } & Partial<AutoloadPluginOptions>;
 
-const { connectionUrl } = config[DATABASE_CONFIG];
+const { connectionUrl, dbName } = config[DATABASE_CONFIG];
 
 const app: FastifyPluginAsync<AutoloadPluginOptions> = async (
   fastify,
@@ -18,6 +18,7 @@ const app: FastifyPluginAsync<AutoloadPluginOptions> = async (
   void fastify.register(fastifyMongodb, {
     forceClose: true,
     url: connectionUrl,
+    database: dbName,
     name: 'db',
   });
   void fastify.register(AutoLoad, {

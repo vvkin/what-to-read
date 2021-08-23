@@ -1,3 +1,3 @@
-import { MongoClient } from 'mongodb';
+import { MongoDBNamespace } from 'mongodb';
 
-export type Database = MongoClient;
+export type Database = MongoDBNamespace;

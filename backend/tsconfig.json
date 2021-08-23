@@ -2,13 +2,12 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "baseUrl": "./",
-    "rootDir": "../",
+    "baseUrl": "./../",
     "paths": {
-      "@config/*": ["src/config/*"],
-      "@interfaces/*": ["src/interfaces/*"],
-      "@plugins/*": ["src/plugins/*"],
-      "@shared/*": ["../shared/*"]
+      "@config/*": ["backend/src/config/*"],
+      "@interfaces/*": ["backend/src/interfaces/*"],
+      "@plugins/*": ["backend/src/plugins/*"],
+      "@shared/*": ["shared/*"]
     }
   },
   "exclude": ["node_modules", "dist", "test", "**/*.spec.ts"]

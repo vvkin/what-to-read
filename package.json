@@ -12,8 +12,8 @@
     "shared"
   ],
   "scripts": {
-    "lint": "eslint ./**/*.ts",
-    "fmt:check": "prettier --check ./**/*.ts"
+    "lint": "eslint '**/*.{ts,js}'",
+    "lint:fix": "eslint --fix '**/*.{ts,js}'"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.29.2",
