@@ -1,5 +1,5 @@
-export interface IServerConfig {
+export interface ServerConfig {
   port: number;
   host: string;
-  logger: boolean;
+  logger: boolean | { prettyPrint: true };
 }

@@ -1,13 +1,15 @@
 import fp from 'fastify-plugin';
-import { UserDao } from './user.dao';
 import { UserService } from './user.service';
 import userRoutes from './user.route';
+import { FastifyPluginAsync } from 'fastify';
 
-export default fp(async (fastify): Promise<void> => {
-  const userDao = new UserDao(fastify.db);
-  const userService = new UserService(userDao);
-  fastify.decorate('userService', userService);
+const user: FastifyPluginAsync = async (fastify): Promise<void> => {
   fastify.register(userRoutes, { prefix: 'users' });
+};
+
+export default fp(user, {
+  name: 'user',
+  dependencies: ['auth'],
 });
 
 declare module 'fastify' {

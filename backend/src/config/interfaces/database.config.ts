@@ -1,4 +1,3 @@
-export interface IDatabaseConfig {
+export interface DatabaseConfig {
   connectionUrl: string;
-  dbName: string;
 }
